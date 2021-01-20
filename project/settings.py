@@ -135,14 +135,12 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 
 STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"),)
 
-DEBUG = False
 
 try:
     from .local_settings import *
 except ImportError:
     pass
 
-if not DEBUG:
-    import django_heroku
+import django_heroku
 
-    django_heroku.settings(locals())
+django_heroku.settings(locals())
