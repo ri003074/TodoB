@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "@rb==j$-xir!a^0_eo9c22c+8jgtofar026vv9bs$v56@b5i^+"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True # move to local.py and production.py
 
 ALLOWED_HOSTS = [".herokuapp.com", "localhost", "http://localhost:3000"]
 
@@ -54,7 +54,10 @@ MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",  # add
 ]
 
-CORS_ORIGIN_WHITELIST = ["http://localhost:3000", "https://fierce-fortress-84407.herokuapp.com/"]
+CORS_ORIGIN_WHITELIST = [
+    "http://localhost:3000",
+    "https://fierce-fortress-84407.herokuapp.com",
+]
 
 ROOT_URLCONF = "project.urls"
 
@@ -140,3 +143,11 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"),)
 
 
+try:
+    from .local_settings import *
+except ImportError:
+    pass
+
+import django_heroku
+
+django_heroku.settings(locals())
