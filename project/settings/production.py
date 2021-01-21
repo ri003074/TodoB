@@ -1,6 +1,6 @@
 import django_heroku
 from .base import *  # noqa
 
-DEBUG = False
+DEBUG = True  # should be false but for debug
 
 django_heroku.settings(locals())
