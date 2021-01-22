@@ -3,6 +3,7 @@ psycopg2
 djangorestframework
 djoser
 django-cors-headers
+dj-rest-auth[with_social] #for user registration
 
 #add for heroku
 dj-database-url

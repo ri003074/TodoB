@@ -39,10 +39,18 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",  # add
+    "rest_framework.authtoken",  # add
+    "dj_rest_auth",  # add
+    "corsheaders",  # add
     "todob.apps.TodobConfig",  # add
-    # "rest_framework.authtoken",  # add
-    "corsheaders",
+    "django.contrib.sites",  # registration
+    "allauth",  # registration
+    "allauth.account",  # registration
+    "allauth.socialaccount",  # registration
+    "dj_rest_auth.registration",  # registration
 ]
+
+SITE_ID = 1  # registration
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

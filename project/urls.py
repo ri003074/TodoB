@@ -18,6 +18,8 @@ from django.urls import include
 from django.urls import path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('todob.urls')),
+    path("admin/", admin.site.urls),
+    path("api/", include("todob.urls")),
+    path("dj-rest-auth/", include("dj_rest_auth.urls")),
+    path("dj-rest-auth/registration/", include("dj_rest_auth.registration.urls")),
 ]
