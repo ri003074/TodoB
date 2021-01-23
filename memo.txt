@@ -1,0 +1,7 @@
+問題　
+herokuにデプロイした時に、
+django.db.utils.OperationalError: could not translate host name "db" to address: Name or service not known
+
+解決策
+heroku config:set DJANGO_SETTINGS_MODULE=mysite.settings.production
+https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc
