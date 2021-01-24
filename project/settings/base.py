@@ -161,3 +161,9 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 STATICFILES_DIRS = (os.path.join(PROJECT_ROOT, "static"),)
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}
