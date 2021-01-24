@@ -5,3 +5,12 @@ django.db.utils.OperationalError: could not translate host name "db" to address:
 解決策
 heroku config:set DJANGO_SETTINGS_MODULE=mysite.settings.production
 https://qiita.com/okoppe8/items/e60d35f55188c0ab9ecc
+
+
+herokuで
+LINE 1: SELECT "todob_task"."id", "todob_task"."user_id", "todob_tas...
+
+https://qiita.com/quattro_4/items/a2eb3618207e21ca00d3
+
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
