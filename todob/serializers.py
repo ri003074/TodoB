@@ -11,20 +11,20 @@ class UserSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
-    user_id = serializers.PrimaryKeyRelatedField(
+    user_uid = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(), write_only=True
     )
 
     def create(self, validated_date):
-        validated_date["user"] = validated_date.get("user_id", None)
+        validated_date["user"] = validated_date.get("user_uid", None)
 
         if validated_date["user"] is None:
             raise serializers.ValidationError("user not found.")
 
-        del validated_date["user_id"]
+        del validated_date["user_uid"]
 
         return Task.objects.create(**validated_date)
 
     class Meta:
         model = Task
-        fields = ("id", "title", "user", "user_id")
+        fields = ("id", "title", "user", "user_uid", "is_done")
