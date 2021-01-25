@@ -11,6 +11,7 @@ class UserSerializer(serializers.ModelSerializer):
 
 class TaskSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    # use "user_id" then error. why??
     user_uid = serializers.PrimaryKeyRelatedField(
         queryset=User.objects.all(), write_only=True
     )

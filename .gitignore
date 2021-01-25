@@ -3,3 +3,4 @@ project/__pycache__/local_settings.cpython-39.pyc
 *.pyc
 todob/__pycache__/models.cpython-39.pyc
 todob/__pycache__/serializers.cpython-39.pyc
+todob/__pycache__/serializers.cpython-39.pyc
