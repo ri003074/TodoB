@@ -65,7 +65,7 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    "https://fierce-fortress-84407.herokuapp.com",
+    "https://fierce-fortress-84407.herokuapp.com/",
 ]
 
 ROOT_URLCONF = "project.urls"
