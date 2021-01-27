@@ -4,6 +4,7 @@ djangorestframework
 djoser
 django-cors-headers
 dj-rest-auth[with_social] #for user registration
+coverage
 
 #add for heroku
 dj-database-url
