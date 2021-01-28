@@ -4,6 +4,10 @@ from django.test import TestCase
 from rest_framework.test import force_authenticate
 from .models import Task
 from .views import TaskViewSet
+from .serializers import TaskSerializer
+import collections
+
+# import logging
 
 
 class TaskModelTest(TestCase):
@@ -45,3 +49,32 @@ class TestTaskViewSet(TestCase):
         self.assertEqual(response.data[1]["user"]["id"], 1)
         self.assertEqual(response.data[1]["user"]["username"], "kenta")
         self.assertEqual(response.data[1]["is_done"], True)
+
+
+class TestTaskSerializer(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.user = User.objects.create_superuser(
+            username="kenta", password="kawamoto", email="kenta@gmail.com"
+        )
+
+    def test_task_serializer(self):
+        data = {
+            "id": 1,
+            "title": "task1",
+            "user": self.user,
+            "user_uid": 1,
+            "is_done": False,
+        }
+        serializer = TaskSerializer(data=data)
+        serializer.is_valid()
+        serializer.save()
+        self.assertEqual(serializer.data["id"], 1)
+        self.assertEqual(serializer.data["title"], "task1")
+        self.assertEqual(serializer.data["is_done"], False)
+
+        user = collections.OrderedDict()
+        user["id"] = self.user.id
+        user["username"] = self.user.username
+        self.assertEqual(serializer.data["user"], user)
+        # self.assertEqual(serializer.data["user_uid"], 1)
