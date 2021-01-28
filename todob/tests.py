@@ -25,7 +25,7 @@ class TestTaskViewSet(TestCase):
             username="kenta", password="kawamoto", email="kenta@gmail.com"
         )
         Task.objects.create(title="task1-kenta", user=self.user)
-        Task.objects.create(title="task2-kenta", user=self.user)
+        Task.objects.create(title="task2-kenta", user=self.user, is_done=True)
         Task.objects.create(title="task3-kenta", user=self.user)
 
     def test_task_viewset(self):
@@ -39,3 +39,9 @@ class TestTaskViewSet(TestCase):
         self.assertEqual(response.data[0]["user"]["id"], 1)
         self.assertEqual(response.data[0]["user"]["username"], "kenta")
         self.assertEqual(response.data[0]["is_done"], False)
+
+        self.assertEqual(response.data[1]["id"], 2)
+        self.assertEqual(response.data[1]["title"], "task2-kenta")
+        self.assertEqual(response.data[1]["user"]["id"], 1)
+        self.assertEqual(response.data[1]["user"]["username"], "kenta")
+        self.assertEqual(response.data[1]["is_done"], True)
