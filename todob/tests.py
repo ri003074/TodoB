@@ -76,5 +76,7 @@ class TestTaskSerializer(TestCase):
         user = collections.OrderedDict()
         user["id"] = self.user.id
         user["username"] = self.user.username
+        user["email"] = self.user.email
+        user["password"] = self.user.password
         self.assertEqual(serializer.data["user"], user)
         # self.assertEqual(serializer.data["user_uid"], 1)
