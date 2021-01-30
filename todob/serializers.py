@@ -1,12 +1,34 @@
 from rest_framework import serializers
+from rest_framework.authtoken.models import Token
 from .models import Task
 from django.contrib.auth.models import User
+import logging
 
 
 class UserSerializer(serializers.ModelSerializer):
+    logging.debug("user serializer")
+
     class Meta:
         model = User
-        fields = ("id", "username")
+        fields = ("id", "username", "email", "password")
+
+    def create(self, validated_data):
+        logging.debug("user serializer")
+        user = User.objects.create_user(**validated_data)
+        Token.objects.create(user=user)
+
+        tasks = []
+        for i in range(3):
+            task = Task(
+                user=user,
+                title=f"task{i}",
+                is_done=False,
+            )
+            tasks.append(task)
+
+        Task.objects.bulk_create(tasks)
+
+        return user
 
 
 class TaskSerializer(serializers.ModelSerializer):
